@@ -2,8 +2,8 @@
   "hero": {
     "subtitle": "Rock & Pop Cósmico nacido en el oeste de GBA",
     "btn_text": "Escuchar Ahora",
-    "bg_image": "hero.jpg",
-    "btn_link": "#music"
+    "btn_link": "#music",
+    "bg_image": "hero.jpg"
   },
   "news": [
     {
@@ -60,6 +60,7 @@
       "desc": "Diseño exclusivo Tour 2026. Talles S al XL.",
       "price": "$18.000 ARS",
       "link": "https://wa.me/5491168618601",
+      "image": "/assets/folletoSG.jpg",
       "icon": "fas fa-tshirt"
     },
     {
@@ -68,6 +69,7 @@
       "desc": "Taza de la banda",
       "price": "$12000",
       "link": "wa.me/5491136293941",
+      "image": "/assets/IMG_20260205_191607867_MFNR.jpg",
       "icon": "fas fa-shopping-bag"
     }
   ]
