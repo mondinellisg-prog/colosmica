@@ -61,6 +61,14 @@
       "price": "$18.000 ARS",
       "link": "https://wa.me/5491168618601",
       "icon": "fas fa-tshirt"
+    },
+    {
+      "name": "Taza de café de la banda",
+      "tag": "Taza",
+      "desc": "Taza de la banda",
+      "price": "$12000",
+      "link": "wa.me/5491136293941",
+      "icon": "fas fa-shopping-bag"
     }
   ]
 }
