@@ -13,6 +13,9 @@
 
     <!-- ICONOS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- LIBRERÍA MARKDOWN (Para leer el texto de la BIO desde el CMS) -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
     <style>
         /* DEFINICIÓN DE LA FUENTE DESCARGADA */
@@ -92,7 +95,6 @@
         /* --- 3. HERO (PORTADA) --- */
         .hero {
             height: 100vh;
-            /* CAMBIO: position: center 25% baja la imagen en PC */
             background: linear-gradient(to bottom, rgba(0,0,0,0.3), var(--bg-color)), 
                         url('hero.jpg');
             background-size: cover;
@@ -104,15 +106,14 @@
             align-items: center;
             text-align: center;
             padding: 0 20px;
-            /* Padding top extra para bajar el texto y que no tape la cara */
             padding-top: 100px;
         }
 
-        .hero h1 { display: none; } /* Ocultamos el H1 redundante */
+        .hero h1 { display: none; } 
 
         .hero p {
             font-family: var(--font-title);
-            font-size: 1.4rem; /* Un poco más grande */
+            font-size: 1.4rem;
             letter-spacing: 6px;
             text-transform: uppercase;
             margin-bottom: 40px;
@@ -127,7 +128,7 @@
             text-transform: uppercase;
             letter-spacing: 3px;
             font-weight: bold;
-            background: rgba(0,0,0,0.3); /* Fondo semitransparente para mejor lectura */
+            background: rgba(0,0,0,0.3);
         }
         .btn-hero:hover { background: var(--accent); color: #000; box-shadow: 0 0 20px rgba(212, 175, 55, 0.4); }
 
@@ -273,25 +274,13 @@
             .show-row { flex-direction: column; text-align: center; gap: 10px; }
             .show-date { width: auto; border-bottom: 1px solid var(--accent); padding-bottom: 5px; }
 
-            /* AJUSTE HERO MOBILE */
-            /* AJUSTE HERO MOBILE */
-.hero {
-    /* 1. Forzamos a que la imagen sea un 20% más alta que la pantalla para poder bajarla */
-    background-size: auto 120%; 
-    
-    /* 2. NO REPETIR la imagen si sobra espacio */
-    background-repeat: no-repeat;
-
-    /* 3. POSICIÓN: 
-       85% = Mueve la foto a la izquierda para ver a la cantante (que está a la derecha).
-       0%  = Pega la foto arriba de todo para que se vea la cara. */
-    background-position: 65% -50%; 
-
-    background-attachment: scroll;
-    padding-top: 100px;
-}
-
-
+            .hero {
+                background-size: auto 120%; 
+                background-repeat: no-repeat;
+                background-position: 65% -50%; 
+                background-attachment: scroll;
+                padding-top: 100px;
+            }
         }
         
         @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
@@ -299,7 +288,6 @@
 </head>
 <body>
 
-    <!-- NAVEGACIÓN -->
     <nav>
         <div class="logo">Colósmica</div>
         <div class="menu-toggle" onclick="toggleMenu()"><i class="fas fa-bars"></i></div>
@@ -314,54 +302,27 @@
         </ul>
     </nav>
 
-    <!-- HERO -->
+    <!-- HERO (CON ID PARA JS) -->
     <header id="home" class="hero">
-        <h1 style="display:none;">Colósmica</h1> <!-- Oculto -->
-        <p>Rock &amp; Pop Cósmico</p>
-        <a href="#music" class="btn-hero">Escuchar Ahora</a>
+        <h1 style="display:none;">Colósmica</h1>
+        <p id="hero-subtitle">Rock &amp; Pop Cósmico</p>
+        <a href="#music" class="btn-hero" id="hero-btn">Escuchar Ahora</a>
     </header>
 
-    <!-- NOVEDADES -->
+    <!-- NOVEDADES (CONTENEDOR VACÍO PARA JS) -->
     <section id="news">
         <div class="section-header">
             <span class="section-subtitle">Lo último</span>
             <h2 class="section-title">Novedades</h2>
         </div>
-        <div class="news-grid">
-            <article class="news-card">
-                <div class="news-img">
-                    <img src="https://images.unsplash.com/photo-1506157786151-b8491531f063?auto=format&fit=crop&w=500&q=60" alt="Noticia">
-                </div>
-                <div class="news-content">
-                    <span class="news-date">27 ENERO 2026</span>
-                    <h3 class="news-title">Lanzamiento del Videoclip</h3>
-                    <p class="news-excerpt">Ya está disponible nuestro nuevo video en YouTube. Corré a verlo.</p>
-                </div>
-            </article>
-            <article class="news-card">
-                <div class="news-img">
-                    <img src="https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?auto=format&fit=crop&w=500&q=60" alt="Prensa">
-                </div>
-                <div class="news-content">
-                    <span class="news-date">15 ENERO 2026</span>
-                    <h3 class="news-title">Entrevista en Radio Vorterix</h3>
-                    <p class="news-excerpt">Estuvimos charlando sobre la grabación del nuevo disco y lo que se viene.</p>
-                </div>
-            </article>
-            <article class="news-card">
-                <div class="news-img">
-                    <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=500&q=60" alt="Estudio">
-                </div>
-                <div class="news-content">
-                    <span class="news-date">02 ENERO 2026</span>
-                    <h3 class="news-title">Volvemos al Estudio</h3>
-                    <p class="news-excerpt">Comenzamos a grabar las maquetas para el sucesor de "Orígenes".</p>
-                </div>
-            </article>
+        <div class="news-grid" id="news-grid">
+            <!-- AQUÍ SE CARGARÁN LAS NOTICIAS DEL CMS AUTOMÁTICAMENTE -->
+            <!-- Si no hay CMS, se muestra esto por defecto: -->
+            <article class="news-card"><div class="news-content"><p>Cargando novedades...</p></div></article>
         </div>
     </section>
 
-    <!-- BIO -->
+    <!-- BIO (IDS PARA JS) -->
     <section id="bio">
         <div class="section-header">
             <span class="section-subtitle">La Historia</span>
@@ -369,85 +330,36 @@
         </div>
         <div class="bio-container">
             <div class="bio-img">
-                <img src="https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?auto=format&fit=crop&w=600&q=80" alt="Colósmica Bio">
+                <img id="bio-img" src="https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?auto=format&fit=crop&w=600&q=80" alt="Colósmica Bio">
             </div>
-            <div class="bio-text">
-                <p>Nacidos de la energía vibrante de Buenos Aires y la inmensidad del cosmos, <strong>Colósmica</strong> fusiona el indie rock con texturas electrónicas envolventes para crear un sonido único.</p>
-                <p>Desde sus inicios, la banda ha buscado crear no solo canciones, sino atmósferas. Con influencias que van desde el rock alternativo de los 90 hasta el pop sintético moderno, su música es un viaje interestelar diseñado para el escenario principal.</p>
-                <p>"No hacemos música para escuchar, hacemos música para sentir."</p>
-                <img src="https://upload.wikimedia.org/wikipedia/commons/e/e4/Signature_sample.svg" style="width: 150px; opacity: 0.7; filter: invert(1); margin-top: 20px;" alt="Firma">
+            <div class="bio-text" id="bio-text">
+                <p>Cargando biografía...</p>
             </div>
         </div>
     </section>
 
-    <!-- PRÓXIMOS SHOWS -->
+    <!-- SHOWS (CONTENEDOR) -->
     <section id="shows">
         <div class="section-header">
             <span class="section-subtitle">Tour 2026</span>
             <h2 class="section-title">Próximos Shows</h2>
         </div>
-        <div class="shows-list">
-            <div class="show-row">
-                <div class="show-date">31 ENE</div>
-                <div class="show-info">
-                    <div class="show-venue">LoDelPabier</div>
-                    <div class="show-city">Ciudad Jardín</div>
-                </div>
-                <a href="https://wa.me/5491168618601?text=Hola!%20Quiero%20reservar%20entradas%20para%20el%20show%20del%2031%20de%20Enero" target="_blank" class="btn-ticket">
-                    <i class="fab fa-whatsapp"></i> Reservar
-                </a>
-            </div>
-            <div class="show-row">
-                <div class="show-date">22 MAR</div>
-                <div class="show-info">
-                    <div class="show-venue">La Tangente</div>
-                    <div class="show-city">Palermo, CABA</div>
-                </div>
-                <a href="https://wa.me/5491168618601?text=Hola!%20Quiero%20reservar%20entradas%20para%20el%20show%20del%2022%20de%20Marzo" target="_blank" class="btn-ticket">
-                    <i class="fab fa-whatsapp"></i> Reservar
-                </a>
-            </div>
-            <div class="show-row">
-                <div class="show-date">10 ABR</div>
-                <div class="show-info">
-                    <div class="show-venue">Cultural Morón</div>
-                    <div class="show-city">Buenos Aires</div>
-                </div>
-                <a href="https://wa.me/5491168618601?text=Hola!%20Quiero%20reservar%20entradas%20para%20el%20show%20del%2010%20de%20Abril" target="_blank" class="btn-ticket">
-                    <i class="fab fa-whatsapp"></i> Reservar
-                </a>
-            </div>
+        <div class="shows-list" id="shows-list">
+            <!-- SE LLENA CON JS -->
         </div>
     </section>
 
-    <!-- VIDEOS (CARRUSEL CORREGIDO) -->
+    <!-- VIDEOS -->
     <section id="videos" style="background: #080808;">
         <div class="section-header">
             <span class="section-subtitle">Visuales</span>
             <h2 class="section-title">Videos Oficiales</h2>
         </div>
-        
         <div class="video-carousel-wrapper">
             <button class="carousel-btn prev-btn" onclick="moveCarousel(-1)"><i class="fas fa-chevron-left"></i></button>
-            
             <div class="video-carousel" id="videoCarousel">
-                <div class="video-item">
-                    <iframe src="https://www.youtube.com/embed/su8w3fQJ-Sc" title="Video 1" allowfullscreen></iframe>
-                </div>
-                <div class="video-item">
-                    <iframe src="https://www.youtube.com/embed/-q2BQm1cl34" title="Video 2" allowfullscreen></iframe>
-                </div>
-                <div class="video-item">
-                    <iframe src="https://www.youtube.com/embed/h8fYuyENz9M" title="Video 3" allowfullscreen></iframe>
-                </div>
-                <div class="video-item">
-                    <iframe src="https://www.youtube.com/embed/p7e0WiHKXlE" title="Video 4" allowfullscreen></iframe>
-                </div>
-                <div class="video-item">
-                    <iframe src="https://www.youtube.com/embed/alAHqQiizX8" title="Video 5" allowfullscreen></iframe>
-                </div>
+                <!-- SE LLENA CON JS -->
             </div>
-
             <button class="carousel-btn next-btn" onclick="moveCarousel(1)"><i class="fas fa-chevron-right"></i></button>
         </div>
         <div style="text-align: center; margin-top: 20px;">
@@ -455,7 +367,7 @@
         </div>
     </section>
 
-    <!-- MÚSICA -->
+    <!-- MÚSICA (Fijo por ahora) -->
     <section id="music">
         <div class="section-header">
             <span class="section-subtitle">Streaming</span>
@@ -472,43 +384,11 @@
             <span class="section-subtitle">Apoyá a los artistas</span>
             <h2 class="section-title">Tienda Digital</h2>
         </div>
-
-        <div class="shop-grid">
-            <div class="shop-item">
-                <div class="tag">Digital Audio</div>
-                <div class="shop-icon"><i class="fas fa-compact-disc"></i></div>
-                <h3>Pack "Sesiones Cósmicas"</h3>
-                <p style="color: #888; font-size: 0.9rem; margin-bottom: 10px;">5 Temas en Alta Calidad (WAV/MP3) + Arte de Tapa Digital.</p>
-                <span class="shop-price">$15.000 ARS</span>
-                <a href="https://wa.me/5491168618601?text=Hola!%20Quiero%20comprar%20el%20Pack%20Digital%20Sesiones%20Cósmicas" target="_blank" class="btn-whatsapp">
-                    <i class="fab fa-whatsapp"></i> Comprar
-                </a>
-                <p style="font-size: 0.7rem; color: #555; margin-top: 10px;">Te enviamos link de descarga tras transferir.</p>
-            </div>
-            <div class="shop-item">
-                <div class="tag">Evento</div>
-                <div class="shop-icon"><i class="fas fa-wine-glass"></i></div>
-                <h3>Música & Vinos</h3>
-                <p style="color: #888; font-size: 0.9rem; margin-bottom: 10px;">Entrada anticipada para el evento exclusivo con degustación.</p>
-                <span class="shop-price">$15.000 ARS</span>
-                <a href="https://wa.me/5491168618601?text=Hola!%20Quiero%20comprar%20entrada%20para%20Música%20y%20Vinos" target="_blank" class="btn-whatsapp">
-                    <i class="fab fa-whatsapp"></i> Reservar
-                </a>
-            </div>
-            <div class="shop-item">
-                <div class="tag">Merch</div>
-                <div class="shop-icon"><i class="fas fa-tshirt"></i></div>
-                <h3>Remera Oficial</h3>
-                <p style="color: #888; font-size: 0.9rem; margin-bottom: 10px;">Diseño exclusivo Tour 2026. Talles S - M - L - XL.</p>
-                <span class="shop-price">$18.000 ARS</span>
-                <a href="https://wa.me/5491168618601?text=Hola!%20Quiero%20comprar%20la%20Remera%20Oficial" target="_blank" class="btn-whatsapp">
-                    <i class="fab fa-whatsapp"></i> Pedir
-                </a>
-            </div>
+        <div class="shop-grid" id="shop-grid">
+            <!-- SE LLENA CON JS -->
         </div>
     </section>
 
-    <!-- FOOTER -->
     <footer>
         <div class="social-links">
             <a href="https://www.instagram.com/colosmica" target="_blank"><i class="fab fa-instagram"></i></a>
@@ -518,18 +398,92 @@
         <p style="color: #444; font-size: 0.8rem;">&copy; 2026 COLÓSMICA. TODOS LOS DERECHOS RESERVADOS.</p>
     </footer>
 
-    <!-- SCRIPTS -->
+    <!-- SCRIPTS DEL SITIO + MOTOR CMS -->
     <script>
         function toggleMenu() {
-            const navLinks = document.querySelector('.nav-links');
-            navLinks.classList.toggle('active');
+            document.querySelector('.nav-links').classList.toggle('active');
         }
-
         function moveCarousel(direction) {
             const container = document.getElementById('videoCarousel');
             const scrollAmount = 320; 
-            container.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
+            container.scrollBy({ left: direction * 320, behavior: 'smooth' });
         }
+
+        // --- MOTOR DEL CMS (SISTEMA DE INYECCIÓN) ---
+        async function loadCMS() {
+            try {
+                const res = await fetch('data.json');
+                if (!res.ok) return; // Si no hay datos, no hace nada
+                const data = await res.json();
+
+                // 1. HERO
+                if (data.hero) {
+                    if(data.hero.subtitle) document.getElementById('hero-subtitle').innerText = data.hero.subtitle;
+                    if(data.hero.btn_text) document.getElementById('hero-btn').innerText = data.hero.btn_text;
+                    if(data.hero.btn_link) document.getElementById('hero-btn').href = data.hero.btn_link;
+                    if(data.hero.bg_image) document.querySelector('.hero').style.backgroundImage = `linear-gradient(to bottom, rgba(0,0,0,0.3), var(--bg-color)), url('${data.hero.bg_image}')`;
+                }
+
+                // 2. NOVEDADES
+                if (data.news) {
+                    document.getElementById('news-grid').innerHTML = data.news.map(n => `
+                        <article class="news-card">
+                            <div class="news-img"><img src="${n.image}" alt="${n.title}"></div>
+                            <div class="news-content">
+                                <span class="news-date" style="color:var(--accent); font-weight:bold;">${n.date}</span>
+                                <h3 style="margin:10px 0; font-family:var(--font-title);">${n.title}</h3>
+                                <p style="color:#aaa;">${n.excerpt}</p>
+                            </div>
+                        </article>
+                    `).join('');
+                }
+
+                // 3. BIO
+                if (data.bio) {
+                    if(data.bio.image) document.getElementById('bio-img').src = data.bio.image;
+                    if(data.bio.text) document.getElementById('bio-text').innerHTML = marked.parse(data.bio.text);
+                }
+
+                // 4. SHOWS
+                if (data.shows) {
+                    document.getElementById('shows-list').innerHTML = data.shows.map(s => `
+                        <div class="show-row">
+                            <div style="font-family:var(--font-title); font-size:1.5rem;">${s.date}</div>
+                            <div>
+                                <div style="color:var(--accent); font-weight:bold;">${s.venue}</div>
+                                <div style="text-transform:uppercase; font-size:0.8rem; color:#aaa;">${s.city}</div>
+                            </div>
+                            <a href="${s.link}" target="_blank" class="btn-ticket" style="border:1px solid var(--whatsapp); color:var(--whatsapp); padding:5px 15px; border-radius:20px;">Reservar</a>
+                        </div>
+                    `).join('');
+                }
+
+                // 5. VIDEOS
+                if (data.videos) {
+                    document.getElementById('videoCarousel').innerHTML = data.videos.map(v => `
+                        <div class="video-item">
+                            <iframe src="https://www.youtube.com/embed/${v.id}" frameborder="0" allowfullscreen></iframe>
+                        </div>
+                    `).join('');
+                }
+
+                // 6. TIENDA
+                if (data.shop) {
+                    document.getElementById('shop-grid').innerHTML = data.shop.map(p => `
+                        <div class="shop-item">
+                            <div class="tag">${p.tag}</div>
+                            <div style="font-size:3rem; margin-bottom:10px;"><i class="${p.icon}"></i></div>
+                            <h3>${p.name}</h3>
+                            <p style="color:#888; font-size:0.9rem;">${p.desc}</p>
+                            <span style="font-size:1.5rem; font-weight:bold; display:block; margin:10px 0;">${p.price}</span>
+                            <a href="${p.link}" target="_blank" class="btn-whatsapp">Comprar</a>
+                        </div>
+                    `).join('');
+                }
+
+            } catch (e) { console.error("Esperando datos del CMS..."); }
+        }
+        loadCMS();
     </script>
 </body>
 </html>
