@@ -1,0 +1,62 @@
+{
+  "hero": {
+    "subtitle": "Rock & Pop Cósmico",
+    "btn_text": "Escuchar Ahora",
+    "btn_link": "#music",
+    "bg_image": "hero.jpg"
+  },
+  "news": [
+    {
+      "title": "Lanzamiento del Videoclip",
+      "date": "27 ENERO 2026",
+      "excerpt": "Ya está disponible nuestro nuevo video en YouTube. Corré a verlo.",
+      "image": "https://images.unsplash.com/photo-1506157786151-b8491531f063?auto=format&fit=crop&w=500&q=60"
+    },
+    {
+      "title": "Entrevista en Radio Vorterix",
+      "date": "15 ENERO 2026",
+      "excerpt": "Estuvimos charlando sobre la grabación del nuevo disco y lo que se viene.",
+      "image": "https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?auto=format&fit=crop&w=500&q=60"
+    }
+  ],
+  "bio": {
+    "text": "Nacidos de la energía vibrante de Buenos Aires y la inmensidad del cosmos, **Colósmica** fusiona el indie rock con texturas electrónicas envolventes para crear un sonido único.\n\nDesde sus inicios, la banda ha buscado crear no solo canciones, sino atmósferas. Con influencias que van desde el rock alternativo de los 90 hasta el pop sintético moderno.",
+    "image": "https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?auto=format&fit=crop&w=600&q=80"
+  },
+  "shows": [
+    {
+      "date": "31 ENE",
+      "venue": "LoDelPabier",
+      "city": "Ciudad Jardín",
+      "link": "https://wa.me/5491168618601"
+    },
+    {
+      "date": "22 MAR",
+      "venue": "La Tangente",
+      "city": "Palermo, CABA",
+      "link": "https://wa.me/5491168618601"
+    }
+  ],
+  "videos": [
+    { "id": "su8w3fQJ-Sc" },
+    { "id": "-q2BQm1cl34" }
+  ],
+  "shop": [
+    {
+      "name": "Pack Sesiones Cósmicas",
+      "tag": "Digital",
+      "desc": "5 Temas en Alta Calidad + Arte de Tapa.",
+      "price": "$15.000 ARS",
+      "link": "https://wa.me/5491168618601",
+      "icon": "fas fa-compact-disc"
+    },
+    {
+      "name": "Remera Oficial",
+      "tag": "Merch",
+      "desc": "Diseño exclusivo Tour 2026. Talles S al XL.",
+      "price": "$18.000 ARS",
+      "link": "https://wa.me/5491168618601",
+      "icon": "fas fa-tshirt"
+    }
+  ]
+}
