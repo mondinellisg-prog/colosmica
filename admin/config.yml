@@ -1,0 +1,84 @@
+backend:
+  name: github
+  repo: mondinellisg-prog/colosmica
+  branch: main
+  # auth_type: pkce  <-- Descomentar cuando configuremos el login automático
+  # app_id: TU_APP_ID
+
+media_folder: "assets/uploads" # Las fotos que suba la dueña van acá
+public_folder: "assets/uploads"
+
+site_url: https://colosmica.com.ar
+
+collections:
+  - name: "contenido"
+    label: "Administrar Web"
+    files:
+      - name: "data"
+        label: "Datos del Sitio"
+        file: "data.json"
+        fields:
+          # --- HERO ---
+          - name: "hero"
+            label: "1. Portada (Hero)"
+            widget: "object"
+            collapsed: true
+            fields:
+              - {label: "Subtítulo (Rock & Pop...)", name: "subtitle", widget: "string", required: false}
+              - {label: "Texto Botón", name: "btn_text", widget: "string", required: false}
+              - {label: "Imagen de Fondo", name: "bg_image", widget: "image", required: false}
+
+          # --- NOVEDADES ---
+          - name: "news"
+            label: "2. Novedades"
+            widget: "list"
+            collapsed: true
+            summary: '{{title}} - {{date}}'
+            fields:
+              - {label: "Título", name: "title", widget: "string"}
+              - {label: "Fecha", name: "date", widget: "string"}
+              - {label: "Resumen", name: "excerpt", widget: "text"}
+              - {label: "Imagen", name: "image", widget: "image"}
+
+          # --- BIO ---
+          - name: "bio"
+            label: "3. Biografía"
+            widget: "object"
+            collapsed: true
+            fields:
+              - {label: "Historia (Texto)", name: "text", widget: "markdown", required: false}
+              - {label: "Foto Bio", name: "image", widget: "image", required: false}
+
+          # --- SHOWS ---
+          - name: "shows"
+            label: "4. Próximos Shows"
+            widget: "list"
+            collapsed: true
+            summary: '{{date}} - {{venue}}'
+            fields:
+              - {label: "Día (Ej: 31 ENE)", name: "date", widget: "string"}
+              - {label: "Lugar (Venue)", name: "venue", widget: "string"}
+              - {label: "Ciudad", name: "city", widget: "string"}
+              - {label: "Link WhatsApp", name: "link", widget: "string"}
+
+          # --- VIDEOS ---
+          - name: "videos"
+            label: "5. Videos YouTube"
+            widget: "list"
+            collapsed: true
+            fields:
+              - {label: "ID del Video (Lo que está después de embed/)", name: "id", widget: "string"}
+
+          # --- TIENDA ---
+          - name: "shop"
+            label: "6. Tienda"
+            widget: "list"
+            collapsed: true
+            summary: '{{name}} - {{price}}'
+            fields:
+              - {label: "Nombre Producto", name: "name", widget: "string"}
+              - {label: "Etiqueta (Tag)", name: "tag", widget: "string"}
+              - {label: "Descripción", name: "desc", widget: "string"}
+              - {label: "Precio", name: "price", widget: "string"}
+              - {label: "Link WhatsApp", name: "link", widget: "string"}
+              - {label: "Icono (FontAwesome)", name: "icon", widget: "string", default: "fas fa-shopping-bag"}
