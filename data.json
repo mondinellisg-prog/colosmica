@@ -60,17 +60,8 @@
       "desc": "Diseño exclusivo Tour 2026. Talles S al XL.",
       "price": "$18.000 ARS",
       "link": "https://wa.me/5491168618601",
-      "image": "/assets/folletoSG.jpg",
+      "image": "",
       "icon": "fas fa-tshirt"
-    },
-    {
-      "name": "Taza de café de la banda",
-      "tag": "Taza",
-      "desc": "Taza de la banda",
-      "price": "$12000",
-      "link": "wa.me/5491136293941",
-      "image": "/assets/IMG_20260205_191607867_MFNR.jpg",
-      "icon": "fas fa-shopping-bag"
     }
   ]
 }
