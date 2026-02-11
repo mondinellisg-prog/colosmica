@@ -1,12 +1,12 @@
 backend:
   name: github
-  repo: mondinellisg-prog/colosmica
+  repo: mondinellisg-prog/colosmica-oficial # TU REPO
   branch: main
-  # auth_type: pkce  <-- Descomentar cuando configuremos el login automático
+  # auth_type: pkce  <-- Descomentar si usas el worker
   # app_id: TU_APP_ID
 
-media_folder: "assets/uploads" # Las fotos que suba la dueña van acá
-public_folder: "assets/uploads"
+media_folder: "assets"
+public_folder: "assets"
 
 site_url: https://colosmica.com.ar
 
@@ -18,14 +18,15 @@ collections:
         label: "Datos del Sitio"
         file: "data.json"
         fields:
-          # --- HERO ---
+          # --- HERO (PORTADA) ---
           - name: "hero"
             label: "1. Portada (Hero)"
             widget: "object"
             collapsed: true
             fields:
-              - {label: "Subtítulo (Rock & Pop...)", name: "subtitle", widget: "string", required: false}
+              - {label: "Subtítulo", name: "subtitle", widget: "string", required: false}
               - {label: "Texto Botón", name: "btn_text", widget: "string", required: false}
+              - {label: "Link Botón", name: "btn_link", widget: "string", required: false}
               - {label: "Imagen de Fondo", name: "bg_image", widget: "image", required: false}
 
           # --- NOVEDADES ---
@@ -33,12 +34,12 @@ collections:
             label: "2. Novedades"
             widget: "list"
             collapsed: true
-            summary: '{{title}} - {{date}}'
+            summary: '{{title}}'
             fields:
-              - {label: "Título", name: "title", widget: "string"}
-              - {label: "Fecha", name: "date", widget: "string"}
-              - {label: "Resumen", name: "excerpt", widget: "text"}
-              - {label: "Imagen", name: "image", widget: "image"}
+              - {label: "Título", name: "title", widget: "string"} # Este lo dejo obligatorio para identificar la noticia
+              - {label: "Fecha", name: "date", widget: "string", required: false}
+              - {label: "Resumen", name: "excerpt", widget: "text", required: false}
+              - {label: "Imagen", name: "image", widget: "image", required: false}
 
           # --- BIO ---
           - name: "bio"
@@ -46,7 +47,7 @@ collections:
             widget: "object"
             collapsed: true
             fields:
-              - {label: "Historia (Texto)", name: "text", widget: "markdown", required: false}
+              - {label: "Historia", name: "text", widget: "markdown", required: false}
               - {label: "Foto Bio", name: "image", widget: "image", required: false}
 
           # --- SHOWS ---
@@ -57,28 +58,31 @@ collections:
             summary: '{{date}} - {{venue}}'
             fields:
               - {label: "Día (Ej: 31 ENE)", name: "date", widget: "string"}
-              - {label: "Lugar (Venue)", name: "venue", widget: "string"}
-              - {label: "Ciudad", name: "city", widget: "string"}
-              - {label: "Link WhatsApp", name: "link", widget: "string"}
+              - {label: "Lugar", name: "venue", widget: "string", required: false}
+              - {label: "Ciudad", name: "city", widget: "string", required: false}
+              - {label: "Link WhatsApp", name: "link", widget: "string", required: false}
 
           # --- VIDEOS ---
           - name: "videos"
             label: "5. Videos YouTube"
             widget: "list"
             collapsed: true
+            summary: '{{id}}'
             fields:
-              - {label: "ID del Video (Lo que está después de embed/)", name: "id", widget: "string"}
+              - {label: "ID del Video", name: "id", widget: "string"}
 
           # --- TIENDA ---
           - name: "shop"
             label: "6. Tienda"
             widget: "list"
             collapsed: true
-            summary: '{{name}} - {{price}}'
+            summary: '{{name}}'
             fields:
               - {label: "Nombre Producto", name: "name", widget: "string"}
-              - {label: "Etiqueta (Tag)", name: "tag", widget: "string"}
-              - {label: "Descripción", name: "desc", widget: "string"}
-              - {label: "Precio", name: "price", widget: "string"}
-              - {label: "Link WhatsApp", name: "link", widget: "string"}
-              - {label: "Icono (FontAwesome)", name: "icon", widget: "string", default: "fas fa-shopping-bag"}
+              - {label: "Etiqueta (Tag)", name: "tag", widget: "string", required: false}
+              - {label: "Descripción", name: "desc", widget: "string", required: false}
+              - {label: "Precio", name: "price", widget: "string", required: false}
+              - {label: "Link Compra", name: "link", widget: "string", required: false}
+              # Agregamos opción de FOTO para el producto
+              - {label: "Foto del Producto", name: "image", widget: "image", required: false} 
+              - {label: "O Icono (Si no hay foto)", name: "icon", widget: "string", required: false, default: "fas fa-shopping-bag"}
