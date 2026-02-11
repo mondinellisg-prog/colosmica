@@ -469,16 +469,25 @@
 
                 // 6. TIENDA
                 if (data.shop) {
-                    document.getElementById('shop-grid').innerHTML = data.shop.map(p => `
+                    document.getElementById('shop-grid').innerHTML = data.shop.map(p => {
+                        // Lógica: Si subió imagen, la mostramos. Si no, mostramos el ícono.
+                        let mediaHTML = '';
+                        if (p.image) {
+                            mediaHTML = `<div style="height:150px; overflow:hidden; margin-bottom:15px; border-radius:5px;"><img src="${p.image}" style="width:100%; height:100%; object-fit:cover;"></div>`;
+                        } else {
+                            mediaHTML = `<div style="font-size:3rem; margin-bottom:20px;"><i class="${p.icon || 'fas fa-shopping-bag'}"></i></div>`;
+                        }
+
+                        return `
                         <div class="shop-item">
-                            <div class="tag">${p.tag}</div>
-                            <div style="font-size:3rem; margin-bottom:10px;"><i class="${p.icon}"></i></div>
+                            ${p.tag ? `<div class="tag">${p.tag}</div>` : ''}
+                            ${mediaHTML}
                             <h3>${p.name}</h3>
-                            <p style="color:#888; font-size:0.9rem;">${p.desc}</p>
-                            <span style="font-size:1.5rem; font-weight:bold; display:block; margin:10px 0;">${p.price}</span>
-                            <a href="${p.link}" target="_blank" class="btn-whatsapp">Comprar</a>
+                            <p style="color:#888; font-size:0.9rem;">${p.desc || ''}</p>
+                            <span style="font-size:1.5rem; font-weight:bold; display:block; margin:10px 0;">${p.price || 'Consultar'}</span>
+                            ${p.link ? `<a href="${p.link}" target="_blank" class="btn-whatsapp">Comprar</a>` : ''}
                         </div>
-                    `).join('');
+                    `}).join('');
                 }
 
             } catch (e) { console.error("Esperando datos del CMS..."); }
