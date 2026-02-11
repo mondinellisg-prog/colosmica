@@ -1,9 +1,9 @@
 {
   "hero": {
-    "subtitle": "Rock & Pop Cósmico",
+    "subtitle": "Rock & Pop Cósmico nacido en el oeste de GBA",
     "btn_text": "Escuchar Ahora",
-    "btn_link": "#music",
-    "bg_image": "hero.jpg"
+    "bg_image": "hero.jpg",
+    "btn_link": "#music"
   },
   "news": [
     {
@@ -38,8 +38,12 @@
     }
   ],
   "videos": [
-    { "id": "su8w3fQJ-Sc" },
-    { "id": "-q2BQm1cl34" }
+    {
+      "id": "su8w3fQJ-Sc"
+    },
+    {
+      "id": "-q2BQm1cl34"
+    }
   ],
   "shop": [
     {
