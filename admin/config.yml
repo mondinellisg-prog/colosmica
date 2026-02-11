@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: mondinellisg-prog/colosmica-oficial # TU REPO
+  repo: mondinellisg-prog/colosmica
   branch: main
   # auth_type: pkce  <-- Descomentar si usas el worker
   # app_id: TU_APP_ID
