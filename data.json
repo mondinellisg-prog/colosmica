@@ -25,22 +25,16 @@
   },
   "shows": [
     {
-      "date": "31 ENE",
-      "venue": "LoDelPabier",
-      "city": "Ciudad Jardín",
-      "link": "https://wa.me/5491168618601"
-    },
-    {
-      "date": "22 MAR",
-      "venue": "La Tangente",
-      "city": "Palermo, CABA",
-      "link": "https://wa.me/5491168618601"
-    },
-    {
       "date": "13/03",
       "venue": "Lodelpabier",
       "city": "Ciudad Jardín",
       "link": ""
+    },
+    {
+      "date": "31 ENE",
+      "venue": "LoDelPabier",
+      "city": "Ciudad Jardín",
+      "link": "https://wa.me/5491168618601"
     }
   ],
   "videos": [
