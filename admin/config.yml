@@ -36,7 +36,7 @@ collections:
             collapsed: true
             summary: '{{title}}'
             fields:
-              - {label: "Título", name: "title", widget: "string"} # Este lo dejo obligatorio para identificar la noticia
+              - {label: "Título", name: "title", widget: "string"}
               - {label: "Fecha", name: "date", widget: "string", required: false}
               - {label: "Resumen", name: "excerpt", widget: "text", required: false}
               - {label: "Imagen", name: "image", widget: "image", required: false}
@@ -50,17 +50,19 @@ collections:
               - {label: "Historia", name: "text", widget: "markdown", required: false}
               - {label: "Foto Bio", name: "image", widget: "image", required: false}
 
-          # --- SHOWS ---
+          # --- SHOWS (Actualizado con Flyer) ---
           - name: "shows"
             label: "4. Próximos Shows"
             widget: "list"
             collapsed: true
-            summary: '{{date}} - {{venue}}'
+            summary: '{{venue}} - {{date_display}}'
             fields:
-              - {label: "Día (Ej: 31 ENE)", name: "date", widget: "string"}
-              - {label: "Lugar", name: "venue", widget: "string", required: false}
-              - {label: "Ciudad", name: "city", widget: "string", required: false}
-              - {label: "Link WhatsApp", name: "link", widget: "string", required: false}
+              - {label: "Fecha a mostrar (Ej: 31 ENE)", name: "date_display", widget: "string"}
+              - {label: "Nombre del Lugar", name: "venue", widget: "string"}
+              - {label: "Ubicación / Ciudad", name: "city", widget: "string"}
+              - {label: "Imagen / Flyer", name: "flyer", widget: "image"}
+              - {label: "Descripción", name: "description", widget: "text"}
+              - {label: "Link de Reserva", name: "link", widget: "string"}
 
           # --- VIDEOS ---
           - name: "videos"
@@ -83,29 +85,15 @@ collections:
               - {label: "Descripción", name: "desc", widget: "string", required: false}
               - {label: "Precio", name: "price", widget: "string", required: false}
               - {label: "Link Compra", name: "link", widget: "string", required: false}
-              # Agregamos opción de FOTO para el producto
               - {label: "Foto del Producto", name: "image", widget: "image", required: false} 
               - {label: "O Icono (Si no hay foto)", name: "icon", widget: "string", required: false, default: "fas fa-shopping-bag"}
 
-
-          - name: "shows"
-              label: "Próximos Shows"
-              widget: "list"
-              collapsed: true
-              summary: '{{venue}} - {{date_display}}'
-              fields:
-                - { label: "Fecha a mostrar (Ej: 31 ENE)", name: "date_display", widget: "string" }
-                - { label: "Nombre del Lugar", name: "venue", widget: "string" }
-                - { label: "Ubicación / Ciudad", name: "city", widget: "string" }
-                - { label: "Imagen / Flyer", name: "flyer", widget: "image" }
-                - { label: "Descripción", name: "description", widget: "text" }
-                - { label: "Link de Reserva", name: "link", widget: "string" }
-
+          # --- FOTOS (Nueva sección) ---
           - name: "fotos"
-              label: "Galería de Fotos"
-              widget: "list"
-              collapsed: true
-              summary: '{{title}}'
-              fields:
-                - { label: "Título / Alt de la imagen", name: "title", widget: "string" }
-                - { label: "Imagen", name: "image", widget: "image" }
+            label: "7. Galería de Fotos"
+            widget: "list"
+            collapsed: true
+            summary: '{{title}}'
+            fields:
+              - {label: "Título / Alt de la imagen", name: "title", widget: "string"}
+              - {label: "Imagen", name: "image", widget: "image"}
